@@ -23,8 +23,7 @@
       <link href="assets/css/main.css" rel="stylesheet">
       <style type="text/css"> .theam-color { color: rgb(42, 67, 102) !important; } .number-container {
          display: flex; /* Forces all elements to display in the same line */
-         align-items: center; /* Aligns them vertically perfectly */
-         }
+         align-items: center; /* Aligns them vertically perfectly */  } .hudson-backound { background: rgb(42, 67, 102) !important; }
          .number-container {position: relative; left: 36%;} .number-container span {
          margin: 0; /* Removes any default right/left margins */
          padding: 0; /* Ensures no internal padding */
@@ -609,29 +608,27 @@
                   </div>
                   <!-- End Info Item -->
                </div>
-               <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-                  <div class="row gy-4">
+               <form    data-aos="fade-up" data-aos-delay="300">
+                  <div class="row gy-4 mt-4 mb-4">
                      <div class="col-md-6">
-                        <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" id="name" >
                      </div>
                      <div class="col-md-6 ">
-                        <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" id="email" >
                      </div>
-                     <div class="col-md-12">
-                        <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                     <div class="col-md-12 mt-4">
+                        <input type="text" class="form-control" name="subject" placeholder="Subject" id="subject" required="">
                      </div>
-                     <div class="col-md-12">
-                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                     <div class="col-md-12 mt-4">
+                        <textarea class="form-control" name="message" rows="6" placeholder="Message" id="message" required=""></textarea>
                      </div>
-                     <div class="col-md-12 text-center">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                        <button type="submit">Send Message</button>
+                     <div class="col-md-12 text-center mt-4 mb-4">
+                        <button class="btn hudson-backound  text-white text-center btn-lg" type="button" id=sendButton>Create Email</button> 
                      </div>
                   </div>
-               </form>
-               <!-- End Contact Form -->
+            </div>
+            </form>
+            <!-- End Contact Form -->
             </div>
          </section>
          <!-- /Contact Section -->
@@ -767,7 +764,24 @@
             
             });
             
-                 
+            const sendButton = document.getElementById('sendButton');     sendButton.addEventListener('click', sendEmail);
+            
+                       function sendEmail() {
+            
+            // 1. Get input values
+            var name = document.getElementById("name").value;
+            var subject = document.getElementById("subject").value;
+            var message = document.getElementById("message").value;
+            var to = "sam@hudsoncommercial.com";
+            // 2. Format the email body with proper spacing
+             event.preventDefault(); 
+            
+            
+            var body = "Name: " + name + "\r\n\r\nMessage:\r\n" + message;
+            // 3. Create and open the mailto link, encoding the entire body properly
+            window.location.href = "mailto:" + to + 
+            "?subject=" + encodeURIComponent(subject) +  
+               "&body=" + encodeURIComponent(body);          }                       
          </script> 
       </div>
       <!-- Scroll Top -->
